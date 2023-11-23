@@ -1,8 +1,8 @@
 "use client"
-import { MenuComponent } from "@/components/sidebarComponent"
-import { AppContext } from "@/context/appContext"
-import LayoutPrimary from "@/layouts/layoutPrimary"
-import MobileLayout from "@/layouts/mobileLayout"
+import { MenuComponent } from "/src/components/sidebarComponent"
+import { AppContext } from "/src/context/appContext"
+import LayoutPrimary from "/src/layouts/layoutPrimary"
+import MobileLayout from "/src/layouts/mobileLayout"
 import { usePathname } from "next/navigation"
 import { useContext, useEffect, useState } from "react"
 
@@ -81,7 +81,7 @@ export default function Layout ({ children }) {
         ]
     } 
     const getRegex = (code) => {
-        const regex1 = /(usuarios|incidencia)/        ;
+        const regex1 = /^(?:dashboard\/proyectos)$/        ;
         const result = regex1.exec(code)
         return result
     }

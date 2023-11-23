@@ -1,4 +1,4 @@
-import { AppContext } from "@/context/appContext";
+import { AppContext } from "/src/context/appContext";
 import { useContext, useEffect, useState } from "react"
 import { useForm } from "react-hook-form";
 

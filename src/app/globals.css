@@ -14,17 +14,42 @@
 @media (prefers-color-scheme: dark) {
 
 }
+.parallax {
+  overflow: hidden;
+  letter-spacing: -2px;
+  line-height: 0.8;
+  margin: 0;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+}
 
+.parallax .scroller {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 64px;
+  display: flex;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+.parallax span {
+  display: inline-flex;
+  margin-right: 30px;
+  color: #fafafa;
+  font-family: sofia-pro, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #e5e5e5;
+  background: none;
 
 }
 ::-webkit-scrollbar-thumb {
-  background: #a1a1aa;
+  background: #0a0a0a;
   border-radius: 8px;
 }
 * {

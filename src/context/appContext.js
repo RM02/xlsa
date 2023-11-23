@@ -1,11 +1,10 @@
 import { createContext, useEffect, useMemo, useState } from "react";
 import Cookies from "js-cookie";
-import { CookiesProvider } from 'react-cookie';
 import { usePathname, useRouter } from "next/navigation";
 
 export const AppContext = createContext({})
 
-export function AuthProvider ({children}) {
+export function AuthProvider ({ children }) {
 
     const API_URL = process.env.API_v1_URL;
 
@@ -14,6 +13,7 @@ export function AuthProvider ({children}) {
 
     const [account, setAccount] = useState(null);
     const [token, setToken] = useState();
+    const [pid, setPid] = useState("assadasdads");
 
     const getUserAccount = async (token, query) => {
 
@@ -32,7 +32,7 @@ export function AuthProvider ({children}) {
     const login = async (username, password) => {
 
         let credential = new FormData()
-        credential.append("username", username)
+        credential.append("email", username)
         credential.append("password", password)
 
         const response = await fetch(`${API_URL}/auth/token/`, {
@@ -48,6 +48,18 @@ export function AuthProvider ({children}) {
             setAccount(user)
             setToken(data.access)
         }
+        return response
+    }
+    const createUser = async (name, email, password) => {
+        let credential = new FormData()
+        credential.append("first_name", name)
+        credential.append("email", email)
+        credential.append("password", password)
+
+        const response = await fetch(`${API_URL}/users/`, {
+            method: "POST",
+            body: credential
+        })
         return response
     }
     const logout = async () => {
@@ -72,8 +84,8 @@ export function AuthProvider ({children}) {
     }, [])
 
     return (
-        <AppContext.Provider value={{ login, logout, account, token }} className="h-full">
-            {children}
+        <AppContext.Provider value={{ login, logout, createUser, account, token, pid, setPid }} className="h-full">
+            { children }
         </AppContext.Provider>
     )
 }

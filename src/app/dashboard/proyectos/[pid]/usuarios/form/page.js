@@ -1,7 +1,7 @@
 "use client"
-import Modal from "@/components/modal"
-import UserForm from "@/components/userForm"
-import { AppContext } from "@/context/appContext"
+import Modal from "/src/components/modal"
+import UserForm from "/src/components/userForm"
+import { AppContext } from "/src/context/appContext"
 import { useRouter } from "next/navigation"
 import { useContext, useEffect, useState } from "react"
 

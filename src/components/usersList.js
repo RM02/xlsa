@@ -87,7 +87,7 @@ export default function ListComponent ({ data, remove, edit, show, onButtonClick
         return    (
             <div className="relative col-span-full sm:col-span-3 mb-4">
 
-                <div class="rounded overflow-hidden shadow-lg bg-white">                                                    
+                <div onMouseLeave={() => setVisible(false)} class="rounded overflow-hidden shadow-lg bg-white">                                                    
                     <div class="flex flex-col px-6 py-2">
                         <div className="flex flex-row justify-between border-b border-gray-100 py-2">
                             <div>

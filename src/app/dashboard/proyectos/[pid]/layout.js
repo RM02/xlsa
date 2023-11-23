@@ -1,6 +1,6 @@
 export default function ({ children }) {
     return (
-        <div className="h-full">
+        <div className="h-screen">
             { children }
         </div>
     )

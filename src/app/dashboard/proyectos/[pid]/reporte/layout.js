@@ -20,12 +20,8 @@ export default function ({ children }) {
     }
     const renderContent = (data) => {
 
-        const visibleDropdown = (item, index) => {
-            item['visible'] = !item['visible']
-            return item
-        }
-
         let ListComponent =  data?.results.map((item, index) => {
+
             return (
                 <div className="flex flex-cols w-full">
                     <div className={activeClass(`/dashboard/proyectos/xlsa/reporte/${item?.id}`)}>
@@ -33,16 +29,16 @@ export default function ({ children }) {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25M9 16.5v.75m3-3v3M15 12v5.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                         </svg>
                         <div className="flex justify-between w-full">
-                            <a href={`/dashboard/proyectos/xlsa/reporte/${item?.id}`} className="text-xs text-scale-800"> { item?.id } </a>
+                            <a href={`/dashboard/proyectos/xlsa/reporte/${item?.id}`} onMouseOut={() => setSelectedItem(null)} className="text-xs text-neutral-500 font-medium"> { item?.id } </a>
                             {
-                                ( pathname == `/dashboard/proyectos/xlsa/reporte/${item?.id}`) && <button onClick={() => visibleDropdown(item, index) }><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-neutral-600 ml-2 self-center">
+                                ( pathname == `/dashboard/proyectos/xlsa/reporte/${item?.id}`) && <button onClick={() => setSelectedItem(index) }><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-neutral-600 ml-2 self-center">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                                 </svg></button>
                                             
                             }
-                            { 
-                                item?.visible && <Dropdown visible={item?.visible}></Dropdown>
-                            }
+                             
+                            { (selectedItem == index) && <Dropdown visible={true}></Dropdown>}
+                            
                         </div>
                     </div>
                 
@@ -51,31 +47,23 @@ export default function ({ children }) {
         })
         return (ListComponent)
     }
-    const menuComponent = ({ content }) => {
-        content?.map((item) => {
-
-        })
-    }
     const Dropdown = ({ visible }) => {
 
         return (
             <>
              {
-                visible && <div id="dropdownNavbar" class="absolute z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                visible && <div id="dropdownNavbar" class="bg-neutral-200 absolute z-20 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                                </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Editar</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Exportar</a>
+                                    </li>
                                 </ul>
-                                <div class="py-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Sign out</a>
-                                </div>
+{/*                                 <div class="py-1">
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white">Sign out</a>
+                                </div> */}
                             </div> 
              }
             </>
@@ -85,7 +73,7 @@ export default function ({ children }) {
         getReport()
     },[])
     return (
-        <div className="flex flex-rows min-h-full bg-neutral-50">
+        <div className="flex flex-rows bg-neutral-50">
             <div className="bg-white fixed pt-6 px-4 flex-col flex-grow space-y-6 min-h-full w-64 border-r border-neutral-200">
                 <div>
                     <form className="">   
@@ -108,10 +96,15 @@ export default function ({ children }) {
                         <p>Nuevo reporte</p>
                     </button>
                 </div>
-                <div className="">
-                    <p className="text-sm text-scale-1100 text-neutral-600">Reportes ({ data?.count })</p>
+                <div className="flex flex-cols justify-between">
+                    <p className="text-sm font-semibold text-neutral-600">Reportes ({ data?.count })</p>
+                    <button className="self-center" onClick={() => getReport()}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-neutral-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                        </svg>
+                    </button>
                 </div>
-                <div className="p-2 space-y-3 dark:border-neutral-600 h-96 overflow-scroll overflow-x-hidden">
+                <div className="space-y-3 dark:border-neutral-600 h-96 overflow-scroll overflow-x-hidden">
                     { renderContent(data) }
                 </div>
             </div>
@@ -120,4 +113,4 @@ export default function ({ children }) {
             </div>
         </div>
     )
-}
+} 

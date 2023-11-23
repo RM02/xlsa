@@ -1,5 +1,5 @@
 "use client"
-import { AppContext } from "@/context/appContext";
+import { AppContext } from "/src/context/appContext";
 import { useContext, useEffect, useState } from "react"
 
 export default function Profile ({ params }) {

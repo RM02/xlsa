@@ -1,9 +1,9 @@
 "use client"
-import { AppContext } from "@/context/appContext"
+import { AppContext } from "/src/context/appContext"
 import { useRouter } from "next/navigation"
 import { useContext, useEffect, useState } from "react"
 
-export default function () {
+export default function Report () {
     
     const [isDropdown, setDropdown] = useState(false)
     const [incidents, setIncidents] = useState();

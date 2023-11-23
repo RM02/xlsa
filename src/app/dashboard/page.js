@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useContext } from "react";
-import { AppContext } from "@/context/appContext";
+import { AppContext } from "/src/context/appContext";
 import { Chart, registerables } from 'chart.js'
 import { Line } from "react-chartjs-2";
 

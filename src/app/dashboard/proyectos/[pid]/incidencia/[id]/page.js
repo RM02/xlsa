@@ -1,5 +1,5 @@
 "use client"
-import { AppContext } from "@/context/appContext"
+import { AppContext } from "/src/context/appContext"
 import { useContext, useEffect, useState } from "react"
 import { useQRCode } from 'next-qrcode';
 
@@ -10,7 +10,7 @@ export default function IncidentDetail ({ params, title, hideHeader }) {
     const [data, setData] = useState();
     const { Canvas } = useQRCode();
 
-    const API = `${process.env.API_v2_URL}/incidentapi/${params.id}`
+    const API = `http://0.0.0.0:5000/incidentapi/${params.id}`
     
     const getUrl = () => {
         return `http://${window.location.hostname}:8080/dashboard/incidencia/${data?.id}/`
@@ -46,7 +46,7 @@ export default function IncidentDetail ({ params, title, hideHeader }) {
                                     </div>
                                 </div>
                 }
-                <div className="flex flex-col sm:flex-row p-6 sm:tex-md text-sm">
+                <div className="flex flex-col sm:flex-row p-6 sm:tex-md text-sm mt-20">
                     <div className="w-full sm:w-4/6 sm:px-6">
                         <div className="flex flex-col pb-4 sm:pb-0 sm:flex-row mb-4 space-y-2 border-b border-gray-100 sm:border-0">
                             <div className="font-semibold sm:w-2/4">

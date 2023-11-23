@@ -1,10 +1,10 @@
 "use client"
-import Modal from "@/components/modal";
-import RiskForm from "@/components/riskForm"
+import Modal from "/src/components/modal";
+import RiskForm from "/src/components/riskForm"
 import { useRouter } from "next/navigation"
 import { useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { AppContext } from "@/context/appContext";
+import { AppContext } from "/src/context/appContext";
 
 const API = `${process.env.API_v2_URL}`
 

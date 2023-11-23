@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 
 export default function ({ params }) {
     
+    const API_v3_URL = process.env.API_v3_URL
+
     const common_class = "block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
     const error_class = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-red-100 dark:border-red-400"
 
@@ -39,7 +41,7 @@ export default function ({ params }) {
         });
     };
     const getOne = async () => {
-        const response = await fetch(`http://localhost:8002/reportapi/${params?.id}`)
+        const response = await fetch(`${API_v3_URL}/reportapi/${params?.id}`)
         const data = await response.json();
         setFormData(data)
     }

@@ -1,4 +1,4 @@
-import ActiveLink from "@/components/activeLink";
+import ActiveLink from "../components/activeLink";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

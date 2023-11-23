@@ -1,13 +1,13 @@
 "use client"
-import Modal from "@/components/modal";
-import ListComponent from "@/components/usersList"
+import Modal from "/src/components/modal";
+import ListComponent from "/src/components/usersList"
 import Cookies from 'js-cookie';
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react"
 import { useQRCode } from 'next-qrcode';
-import { AppContext } from "@/context/appContext";
+import { AppContext } from "/src/context/appContext";
 
-const API = `${process.env.API_v2_URL}/incidentapi`
+const API_v2_URL = "http://ec2-3-145-34-160.us-east-2.compute.amazonaws.com:8000"
 
 export default function Riesgos ({ params }) {
     
@@ -86,7 +86,7 @@ export default function Riesgos ({ params }) {
       ]
 
     const getData = async () => {
-        let response = await fetch(API, { method: 'GET', headers: { "Authorization": `Bearer ${token}` } })
+        let response = await fetch(`${API_v2_URL}/incidentapi`, { method: 'GET', headers: { "Authorization": `Bearer ${token}` } })
 
         return response
     }
@@ -105,7 +105,7 @@ export default function Riesgos ({ params }) {
     }
     
     const deleteIncident = async (id) => {
-        const response = await fetch(`${API}/${id}`, { method: 'DELETE', headers: { "Authorization": `Bearer ${token}` } })
+        const response = await fetch(`${API_v2_URL}/${id}`, { method: 'DELETE', headers: { "Authorization": `Bearer ${token}` } })
         return response
     }
     const handleModal = async () => {
@@ -148,7 +148,7 @@ export default function Riesgos ({ params }) {
       router.push(`http://${window.location.hostname}:3000/dashboard/proyectos/${params.pid}/incidencia/${data.id}/`)
     }
     const getUrl = () => {
-      return `http://${window.location.hostname}:3000/dashboard/incidencia/${rowData.id}/`
+      return `http://${window.location.hostname}:3000/dashboard/proyectos/${params.pid}/incidencia/${rowData.id}/`
     }
     const ticketElement = () => {
       function ok () {

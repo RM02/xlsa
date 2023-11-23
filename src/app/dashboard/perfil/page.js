@@ -1,5 +1,5 @@
 "use client"
-import { AppContext } from "@/context/appContext"
+import { AppContext } from "/src/context/appContext"
 import { useContext } from "react"
 
 
@@ -10,8 +10,8 @@ export default function () {
     return (
         <div className="container p-6">
             <div className="grid grid-cols-4 gap-4">
-                <div className="col-span-full bg-white rounded-md dark:bg-neutral-800 dark:border-gray-600 dark:text-neutral-400">
-                    <div className="p-6 border-b border-gray-100 dark:border-gray-600">
+                <div className="col-span-full border border-neutral-200 bg-white rounded-md dark:bg-neutral-800 dark:border-gray-600 dark:text-neutral-400">
+                    <div className="p-6 border-b border-gray-200 dark:border-gray-600">
                         <h1 className="text-base text-sm sm:text-md font-semibold dark:text-neutral-400">
                             Credenciales
                         </h1>
@@ -27,8 +27,8 @@ export default function () {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-full bg-white rounded-md dark:bg-neutral-800 dark:border-gray-600">
-                    <div className="p-6 border-b border-gray-100 dark:border-gray-600">
+                <div className="col-span-full border border-neutral-200 bg-white rounded-md dark:bg-neutral-800 dark:border-gray-600">
+                    <div className="p-6 border-b border-gray-200 dark:border-gray-600">
                         <h1 className="text-base text-sm sm:text-md font-semibold dark:text-neutral-400">
                             Perfil
                         </h1>

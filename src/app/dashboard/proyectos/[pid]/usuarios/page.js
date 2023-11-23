@@ -4,9 +4,9 @@ import { useRouter } from "next/navigation"
 
 import Cookies from 'js-cookie';
 
-import UserList from "@/components/usersList"
-import Modal from "@/components/modal";
-import UserForm from "@/components/userForm";
+import UserList from "/src/components/usersList"
+import Modal from "/src/components/modal";
+import UserForm from "/src/components/userForm";
 
 const API = process.env.API_v1_URL;
 
